@@ -52,8 +52,7 @@ class Fusionloss(nn.Module):
         x_grad_joint=torch.max(y_grad,ir_grad)
         loss_grad=F.l1_loss(x_grad_joint,generate_img_grad)
 
-        fft_loss = self.l1loss(torch.fft.fft2(generate_img, dim=(-2, -1)), torch.fft.fft2(image_vis, dim=(-2, -1)))
-        loss_total = 5*loss_in + 10*loss_grad + 0.2*fft_loss
+        loss_total = 5*loss_in + 10*loss_grad
 
         return loss_total,loss_in,loss_grad
 
